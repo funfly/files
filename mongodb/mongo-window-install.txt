@@ -1,0 +1,48 @@
+
+windows安装 mongodb 服务
+参考：http://blog.haohtml.com/archives/5818
+
+1. 将mongodb-win32-i386-2.4.5.zip解压缩到d盘，并重命名文件夹为：mongodb
+2. 创建目录：d:/mongodb/data
+3. 创建目录：d:/mongodb/logs
+4. 运行CMD
+
+    CMD->D:
+    CMD->cd mongodb
+    CMD->cd bin
+    CMD->mongod.exe --dbpath=D:/mongodb/data --logpath=D:/mongodb/logs/logs.txt --logappend --bind_ip 127.0.0.1 --directoryperdb --install
+    
+    参数:
+    --dbpath            这个指定数据库的存放路径
+    --logpath           指定日志文件
+    --logappend         追加的方式
+    --bind_ip           绑定IP地址
+    --directoryperdb    每个数据库单独存放在一个文件夹内
+    --install           安装到Windows服务,默认服务名为 MongoDB
+    
+5. 启动mongodb：CMD->net start mongodb
+6. 关闭mongodb：CMD->net stop mongodb
+7. 启动客户端并测试
+    CMD->D:
+    CMD->cd mongodb
+    CMD->cd bin
+    CMD->mongo.exe
+    CMD-> use test
+        switched to db test
+    CMD-> db.foo.save({a:1})
+    CMD-> db.foo.find()
+        { "_id" : ObjectId("4b946bc03f78000000001542"), "a" : 1 }
+
+8. 扩展 php_mongo.dll
+    将 php_mongo.dll 拷贝到 ext/ 目录
+    找到 php.ini 增加: extension=php_mongo.dll
+    重启 apache 
+    查看 phpinfo 可以看到有 mongo 项。说明 php_mongo.dll 已生效
+    各种版本的 dll : mongo-1.1.4.zip 
+    各种版本的 dll 下载地址：https://s3.amazonaws.com/drivers.mongodb.org/php/index.html
+    参考：http://docs.mongodb.org/ecosystem/drivers/php/
+    
+    
+9. 登录 mongodb
+   CMD-> use admin
+   CMD-> db.auth('weibo','~7PnxjbS6')
