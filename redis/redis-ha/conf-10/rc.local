@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+touch /var/lock/subsys/local
+
+service iptables stop
+/usr/local/svn/bin/svnserve -d --listen-port 3000 -r /usr/local/svndata
+/usr/local/redis/src/redis-server /usr/local/redis/redis.conf
+/usr/local/keepalived/sbin/keepalived -D
