@@ -1,12 +1,12 @@
 
 1. 安装依赖包
-   yum -y install gcc wget make
+   yum -y install gcc wget make tcl
    
-2. 下载、解压、安装 redis    【下载地址：https://code.google.com/p/redis/downloads/list】
+2. 下载、解压、安装 redis    【下载地址：http://redis.io/download】
    cd /usr/local/src
-   wget https://redis.googlecode.com/files/redis-2.6.14.tar.gz
-   tar -xvf redis-2.6.14.tar.gz
-   mv redis-2.6.14 /usr/local/redis 
+   wget http://download.redis.io/releases/redis-2.6.16.tar.gz
+   tar -xvf redis-2.6.16.tar.gz
+   mv redis-2.6.16 /usr/local/redis 
    cd /usr/local/redis 
    make
    make install
@@ -16,16 +16,14 @@
    将 conf-10/redis.conf 上传到：/usr/local/redis/
    
 4. 启动redis
+   vi /usr/local/redis/redis.conf
+   修改：daemaon no 为daemaon yes
+   
    /usr/local/redis/src/redis-server /usr/local/redis/redis.conf
    /usr/local/redis/src/redis-server /usr/local/redis/redis.conf --slaveof 192.168.56.10 6379
    验证运行状态：netstat -ntl 或者 ps -aux|grep redis
    
 5. 其他操作：
-
-   启动服务
-   chmod 700 /etc/init.d/redis
-   chkconfig --add redis
-   service redis start
 
    #测试是否已启动
    /usr/local/redis/src/redis-cli ping
@@ -73,6 +71,7 @@
 9. redis 高可用性 故障转移方案请看目录：redis-ha   
 
 参考：
+   http://www.nginx.cn/tag/redis
    http://www.springload.cn/springload/detail/471
    http://blog.haohtml.com/archives/10385
    http://www.cnblogs.com/weafer/archive/2011/09/21/2184059.html
