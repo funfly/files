@@ -43,18 +43,18 @@
    /usr/local/redis/src/redis-cli -h 192.168.56.10 get test
 
 7. 安装php redis扩展
-   将 phpredis-master.tar 上传到 /usr/local/src
-   cd /usr/local/src
-   tar -xvf phpredis-master.tar
-   cd phpredis-master
-   /usr/local/php/bin/phpize
-   ./configure --with-php-config=/usr/local/php/bin/php-config
-   make && make install
-   
+
+    wget https://github.com/nicolasff/phpredis/zipball/master -O php-redis.zip
+    unzip php-redis.zip
+    cd nicolasff-phpredis-504724b/
+    /usr/local/php/bin/phpize
+    ./configure --with-php-config=/usr/local/php/bin/php-config
+    make && make install
+
    修改php.ini
    vi /usr/local/php/etc/php.ini
    加入：
-   extension = "redis.so"
+   extension=redis.so
    
    重启 php-fpm
    /usr/local/php/sbin/php-fpm restart
