@@ -14,11 +14,11 @@
    make
    make install
 
-   sed '//d'
-   echo 'export PATH=$PATH:/usr/local/nodejs/bin' >> /etc/profile  
-   source /etc/profile 
-
-
+   if [ ! `grep -l "/usr/local/nodejs/bin"    '/etc/profile'` ]; then
+      echo 'export PATH=$PATH:/usr/local/nodejs/bin' >> /etc/profile  
+      source /etc/profile 
+   fi
+   
 3. 安装 express
    cd /usr/local/nodejs/lib/node_modules/npm
    npm install
@@ -27,4 +27,8 @@
    node -v
    express -V
 
-
+4. 安装 rrestjs
+   cd /usr/local/nodejs/lib/node_modules/npm
+   npm install rrestjs
+   npm update rrestjs 
+  
