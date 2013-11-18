@@ -17,7 +17,7 @@
    mkdir /usr/local/mongodb/data
    mkdir /usr/local/mongodb/logs
    
-   mongod --dbpath=/usr/local/mongodb/data --logpath=/usr/local/mongodb/logs/logs.txt --logappend --nojournal&
+   mongod --dbpath=/usr/local/mongodb/data --logpath=/usr/local/mongodb/logs/logs.txt --logappend --fork
 
 3. 安装 php mongodb扩展
    wget http://pecl.php.net/get/mongo-1.2.0.tgz
