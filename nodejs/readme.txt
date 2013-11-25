@@ -19,16 +19,12 @@
       source /etc/profile 
    fi
    
-3. 安装 express
+3. 安装 express supervisor
    cd /usr/local/nodejs/lib/node_modules/npm
    npm install
    npm install -g express
+   npm install -g supervisor
    
    node -v
    express -V
-
-4. 安装 rrestjs
-   cd /usr/local/nodejs/lib/node_modules/npm
-   npm install rrestjs
-   npm update rrestjs 
-  
+   supervisor -V
